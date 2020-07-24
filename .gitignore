@@ -4,6 +4,7 @@ bin-int/*
 Wolf3D/external/Glad/bin/*
 Wolf3D/external/Glad/bin-int/*
 vcxproj.user*
+*.sln
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
