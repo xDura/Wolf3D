@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
-IncludeDir["Glad"] = "/Wolf3D/external/Glad/include"
-IncludeDir["stb"] = "Wolf3D/external/stb"
+IncludeDir["Glad"] = "Wolf3D/external/Glad/include"
+IncludeDir["Imgui"] = "Wolf3D/external/Imgui"
+IncludeDir["external"] = "Wolf3D/external"
+IncludeDir["external"] = "Wolf3D/external"
 
 group "Dependencies"
    include "Wolf3D/external/Glad"
@@ -29,27 +31,28 @@ project "Wolf3D"
 
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
+   
+   pchheader "wf_pch.h"
+   pchsource "Wolf3D/src/wf_pch.cpp"
+   
    files
    {
       "%{prj.name}/src/**.h",
       "%{prj.name}/src/**.cpp",
    }
 
-   pchheader "wf_pch.h"
-   pchsource "Wolf3D/src/wf_pch.cpp"
-
    includedirs
    {
       "%{prj.name}/src",
       "%{IncludeDir.Glad}",
-      "%{IncludeDir.stb}",
-      "%{prj.name}/external/",
+      "%{IncludeDir.Imgui}",
+      "%{IncludeDir.external}",
    }
 
    links 
 	{ 
-		"Glad",
+      "Glad",
+      "SDL2",
 	}
 
    filter "system:windows"
