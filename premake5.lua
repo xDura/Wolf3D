@@ -7,7 +7,7 @@ workspace "Wolf3D"
 	{
 		"Debug",
 		"Release",
-	}
+   }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -15,7 +15,6 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["Glad"] = "Wolf3D/external/Glad/include"
 IncludeDir["Imgui"] = "Wolf3D/external/Imgui"
-IncludeDir["external"] = "Wolf3D/external"
 IncludeDir["external"] = "Wolf3D/external"
 
 group "Dependencies"
@@ -50,13 +49,20 @@ project "Wolf3D"
    }
 
    links 
-	{ 
+	{
       "Glad",
       "SDL2",
+      "SDL2Main",
 	}
 
    filter "system:windows"
       systemversion "latest"
+      libdirs 
+      {
+         "Wolf3D/external/SDL2/bin/x64"
+      }
+
+   --TODO: filter "system:macosx"--
 
    filter "configurations:Debug"
       defines "WF_DEBUG"
@@ -78,11 +84,19 @@ project "Sample"
 
    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
+   
    files
    {
       "%{prj.name}/src/**.h",
       "%{prj.name}/src/**.cpp"
+   }
+
+   includedirs
+	{
+      "Wolf3D/src",
+      "%{IncludeDir.Glad}",
+      "%{IncludeDir.Imgui}",
+      "%{IncludeDir.external}",
    }
 
    links
@@ -92,6 +106,10 @@ project "Sample"
 
    filter "system:windows"
       systemversion "latest"
+      -- libdirs 
+      -- {
+      --    "Wolf3D/external/SDL2/bin/x64"
+      -- }
       
    filter "configurations:Debug"
       defines "WF_DEBUG"
