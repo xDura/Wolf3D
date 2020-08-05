@@ -61,6 +61,7 @@ project "Wolf3D"
       {
          "Wolf3D/external/SDL2/bin/x64"
       }
+	
 
    --TODO: filter "system:macosx"--
 
@@ -106,10 +107,6 @@ project "Sample"
 
    filter "system:windows"
       systemversion "latest"
-      -- libdirs 
-      -- {
-      --    "Wolf3D/external/SDL2/bin/x64"
-      -- }
       
    filter "configurations:Debug"
       defines "WF_DEBUG"
