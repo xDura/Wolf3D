@@ -49,11 +49,11 @@ project "Wolf3D"
    }
 
    links 
-	{
+   {
       "Glad",
       "SDL2",
       "SDL2Main",
-	}
+   }
 
    filter "system:windows"
       systemversion "latest"
@@ -61,7 +61,6 @@ project "Wolf3D"
       {
          "Wolf3D/external/SDL2/bin/x64"
       }
-
    --TODO: filter "system:macosx"--
 
    filter "configurations:Debug"
