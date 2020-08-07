@@ -8,7 +8,7 @@ namespace Wolf
 	{
 	public:
 		SDL_Window* sdl_window;
-		static SDL_Window* Create(const std::string& name, unsigned int width, unsigned int height);
+		static SDL_Window* Create(const std::string& name, unsigned int width, unsigned int height, unsigned int flags);
 		virtual ~SDL_WINDOW();
 		virtual void OnUpdate() override;
 		virtual void SetVSync(bool enabled) override;

@@ -1,11 +1,10 @@
 #include "wf_pch.h"
 #include "sdl_window.h"
 
-SDL_Window* Wolf::SDL_WINDOW::Create(const std::string& name, unsigned int width, unsigned int height)
+SDL_Window* Wolf::SDL_WINDOW::Create(const std::string& name, unsigned int width, unsigned int height, unsigned int flags)
 {
 	SDL_Window* window;
 
-	//set attributes
 	SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 	SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
@@ -24,7 +23,7 @@ SDL_Window* Wolf::SDL_WINDOW::Create(const std::string& name, unsigned int width
 		SDL_WINDOWPOS_UNDEFINED,			// initial y position
 		width,								// width, in pixels
 		height,								// height, in pixels
-		SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE
+		flags
 	);
 
 	if (window == NULL)
@@ -40,13 +39,21 @@ Wolf::SDL_WINDOW::~SDL_WINDOW()
 }
 
 void Wolf::SDL_WINDOW::OnUpdate(){}
-void Wolf::SDL_WINDOW::SetVSync(bool enabled){}
+void Wolf::SDL_WINDOW::SetVSync(bool enabled)
+{
+	int interval = 0;
+	if (enabled) interval = -1;
+	SDL_GL_SetSwapInterval(interval);
+}
+
 bool Wolf::SDL_WINDOW::IsVSync() const
 {
-	return false;
+	int interval = SDL_GL_GetSwapInterval();
+	if (interval == 0) return false;
+	else return true;
 }
 
 void* Wolf::SDL_WINDOW::GetNativeWindowPtr() const
 {
-	return nullptr;
+	return (void*)sdl_window;
 }

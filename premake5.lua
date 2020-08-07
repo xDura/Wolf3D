@@ -49,11 +49,11 @@ project "Wolf3D"
    }
 
    links 
-	{
+   {
       "Glad",
       "SDL2",
       "SDL2Main",
-	}
+   }
 
    filter "system:windows"
       systemversion "latest"
@@ -115,6 +115,10 @@ project "Sample"
 
    filter "system:windows"
       systemversion "latest"
+      -- libdirs 
+      -- {
+      --    "Wolf3D/external/SDL2/bin/x64"
+      -- }
       
 	filter "system:linux"
 		libdirs 
