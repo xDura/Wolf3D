@@ -8,3 +8,7 @@ vcxproj.user*
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+Makefile
+Wolf3D/Makefile
+Wolf3D/external/Glad/Makefile
+Wolf3D/Sample/Makefile

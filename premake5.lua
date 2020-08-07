@@ -1,13 +1,13 @@
 #!lua
 workspace "Wolf3D"
 	architecture "x86_64"
-   startproject "Sample"
+   	startproject "Sample"
    
 	configurations
 	{
 		"Debug",
 		"Release",
-   }
+	}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -61,6 +61,12 @@ project "Wolf3D"
       {
          "Wolf3D/external/SDL2/bin/x64"
       }
+      
+      filter "system:linux"
+      libdirs 
+      {
+         "usr/bin"
+      }
 	
 
    --TODO: filter "system:macosx"--
@@ -102,11 +108,20 @@ project "Sample"
 
    links
    {
-      "Wolf3D"
+	"Wolf3D",
+	"SDL2",
+	"SDL2main",
    }
 
    filter "system:windows"
       systemversion "latest"
+      
+	filter "system:linux"
+		libdirs 
+		{
+		 "usr/bin",
+		}
+	
       
    filter "configurations:Debug"
       defines "WF_DEBUG"
