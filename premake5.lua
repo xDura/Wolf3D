@@ -1,7 +1,7 @@
 #!lua
 workspace "Wolf3D"
 	architecture "x86_64"
-   	startproject "Sample"
+   startproject "Sample"
    
 	configurations
 	{
@@ -106,25 +106,24 @@ project "Sample"
       "%{IncludeDir.external}",
    }
 
-   links
-   {
-	"Wolf3D",
-	"SDL2",
-	"SDL2main",
-   }
-
    filter "system:windows"
       systemversion "latest"
-      -- libdirs 
-      -- {
-      --    "Wolf3D/external/SDL2/bin/x64"
-      -- }
+      links
+      {
+         "Wolf3D",
+      }
       
 	filter "system:linux"
 		libdirs 
 		{
-		 "usr/bin",
-		}
+         "usr/bin",
+      }
+      links
+      {
+         "Wolf3D",
+         "SDL2",
+         "SDL2main",
+      }
 	
       
    filter "configurations:Debug"
