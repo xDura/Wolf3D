@@ -19,6 +19,7 @@ IncludeDir["external"] = "Wolf3D/external"
 
 group "Dependencies"
    include "Wolf3D/external/Glad"
+   include "Wolf3D/external/Imgui"
 group ""
 
 project "Wolf3D"
@@ -50,6 +51,7 @@ project "Wolf3D"
 
    links 
    {
+      "ImGui",
       "Glad",
       "SDL2",
       "SDL2Main",

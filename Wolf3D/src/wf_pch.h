@@ -1,7 +1,6 @@
 #ifndef WF_PCTH
 #define WF_PCTH
 #include "glad/glad.h"
-#include "Imgui/imgui.h"
 #include "stb/stb_image.h"
 #include "textparser/textparser.h"
 #include "tinyXML2/tinyxml2.h"
@@ -12,4 +11,9 @@
 #include <math.h>
 #include <string>
 #include <stdlib.h>
+
+#define IMGUI_IMPL_OPENGL_LOADER_GLAD
+#include "Imgui/imgui.h"
+#include "Imgui/imgui_impl_opengl3.h"
+#include "Imgui/imgui_impl_sdl.h"
 #endif

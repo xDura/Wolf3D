@@ -3,6 +3,8 @@ bin/*
 bin-int/*
 Wolf3D/external/Glad/bin/*
 Wolf3D/external/Glad/bin-int/*
+Wolf3D/external/Imgui/bin/*
+Wolf3D/external/Imgui/bin-int/*
 vcxproj.user*
 *.sln
 *.vcxproj
