@@ -125,6 +125,9 @@ project "Sample"
          "Wolf3D",
          "SDL2",
          "SDL2main",
+  	"Glad",
+         "ImGui",
+         "dl"
       }
 	
       
