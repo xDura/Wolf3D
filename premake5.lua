@@ -117,17 +117,17 @@ project "Sample"
       
 	filter "system:linux"
 		libdirs 
-		{
-         "usr/bin",
-      }
+	{
+		"Wolf3D/external/SDL2/bin/linux/",
+	}
       links
       {
-         "Wolf3D",
-         "SDL2",
-         "SDL2main",
-  	"Glad",
-         "ImGui",
-         "dl"
+		"Wolf3D",
+		"SDL2",
+		"SDL2main",
+		"Glad",
+		"ImGui",
+		"dl"
       }
 	
       
