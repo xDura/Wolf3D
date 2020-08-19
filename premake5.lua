@@ -63,12 +63,6 @@ project "Wolf3D"
       {
          "Wolf3D/external/SDL2/bin/x64"
       }
-      
-      filter "system:linux"
-      libdirs
-      {
-         "usr/bin" --TODO: CHECK IF I NEED THIS--
-      }
 
    filter "configurations:Debug"
       defines "WF_DEBUG"
