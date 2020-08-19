@@ -129,8 +129,20 @@ project "Sample"
 		"ImGui",
 		"dl"
       }
-	
-      
+	filter "system:macosx"
+ 	libdirs 
+	{
+		"Wolf3D/external/SDL2/bin/macos/",
+	}
+	links
+      {
+		"Wolf3D",
+		"SDL2",
+		"SDL2main",
+		"Glad",
+		"ImGui",
+		"dl"
+      }
    filter "configurations:Debug"
       defines "WF_DEBUG"
       runtime "Debug"
