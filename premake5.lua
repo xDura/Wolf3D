@@ -65,13 +65,10 @@ project "Wolf3D"
       }
       
       filter "system:linux"
-      libdirs 
+      libdirs
       {
-         "usr/bin"
+         "usr/bin" --TODO: CHECK IF I NEED THIS--
       }
-	
-
-   --TODO: filter "system:macosx"--
 
    filter "configurations:Debug"
       defines "WF_DEBUG"
@@ -116,33 +113,34 @@ project "Sample"
       }
       
 	filter "system:linux"
-		libdirs 
-	{
-		"Wolf3D/external/SDL2/bin/linux/",
-	}
+      libdirs 
+      {
+         "Wolf3D/external/SDL2/bin/linux/",
+      }
       links
       {
-		"Wolf3D",
-		"SDL2",
-		"SDL2main",
-		"Glad",
-		"ImGui",
-		"dl"
+         "Wolf3D",
+         "SDL2",
+         "SDL2main",
+         "Glad",
+         "ImGui",
+         "dl"
       }
-	filter "system:macosx"
- 	libdirs 
-	{
-		"Wolf3D/external/SDL2/bin/macos/",
-	}
-	links
+   filter "system:macosx"
+      libdirs 
       {
-		"Wolf3D",
-		"SDL2",
-		"SDL2main",
-		"Glad",
-		"ImGui",
-		"dl"
+         "Wolf3D/external/SDL2/bin/macos/",
       }
+      links
+      {
+         "Wolf3D",
+         "SDL2",
+         "SDL2main",
+         "Glad",
+         "ImGui",
+         "dl" --TODO: CHECK IF I NEED THIS-- 
+      }
+
    filter "configurations:Debug"
       defines "WF_DEBUG"
       runtime "Debug"
