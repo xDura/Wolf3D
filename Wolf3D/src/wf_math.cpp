@@ -137,9 +137,9 @@ void Mat33f::setScale(const Vec2f& scale)
 
 void Mat33f::transpose()
 {
-	swap_f32(m[0][1], m[1][0]);
-	swap_f32(m[0][2], m[2][0]);
-	swap_f32(m[2][1], m[1][2]);
+	swap(m[0][1], m[1][0]);
+	swap(m[0][2], m[2][0]);
+	swap(m[2][1], m[1][2]);
 }
 
 void Mat33f::inverse()
@@ -442,19 +442,19 @@ void Mat44f::setScale(const Vec3f & scale)
 
 void Mat44f::transpose()
 {
-	swap_f32(m[0][1], m[1][0]);
-	swap_f32(m[0][2], m[2][0]);
-	swap_f32(m[0][3], m[3][0]);
+	swap(m[0][1], m[1][0]);
+	swap(m[0][2], m[2][0]);
+	swap(m[0][3], m[3][0]);
 
-	swap_f32(m[1][2], m[2][1]);
-	swap_f32(m[1][3], m[3][1]);
+	swap(m[1][2], m[2][1]);
+	swap(m[1][3], m[3][1]);
 
-	swap_f32(m[2][3], m[3][2]);
+	swap(m[2][3], m[3][2]);
 }
 
 bool Mat44f::inverse()
 {
-	u32 i, j, k, swap;
+	u32 i, j, k, u_swap;
 	f32 t;
 	Mat44f temp, final;
 	final.setIdentity();
@@ -468,20 +468,20 @@ bool Mat44f::inverse()
 	{
 		// Look for largest element in column
 
-		swap = i;
+		u_swap = i;
 		for (j = i + 1; j < m; j++)// m or n
 		{
-			if (fabs(temp.m[j][i]) > fabs(temp.m[swap][i]))
-				swap = j;
+			if (fabs(temp.m[j][i]) > fabs(temp.m[u_swap][i]))
+				u_swap = j;
 		}
 
-		if (swap != i)
+		if (u_swap != i)
 		{
 			// Swap rows.
 			for (k = 0; k < n; k++)
 			{
-				swap_f32(temp.m[i][k], temp.m[swap][k]);
-				swap_f32(final.m[i][k], final.m[swap][k]);
+				swap(temp.m[i][k], temp.m[u_swap][k]);
+				swap(final.m[i][k], final.m[u_swap][k]);
 			}
 		}
 

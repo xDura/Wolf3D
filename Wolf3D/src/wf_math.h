@@ -9,22 +9,26 @@
 #define RADTODEG(a) (((a) * 180.0) / M_PI)
 #define DEGTORAD(a) (((a) * M_PI) / 180.0)
 
-static f32 map(f32 value, f32 fromMin, f32 fromMax, f32 toMin, f32 toMax)
-{
-	f32 oldrange = fromMax - fromMin;
-	f32 NewRange = toMax - toMin;
-	return (((value - fromMin) * NewRange) / oldrange) + toMin;
-}
+static void swap(f32& a, f32& b) { f32 aux = a; a = b; b = aux; } //TODO_inline
+static f32 min(f32 a, f32 b) { return a < b ? a : b; } //TODO_inline
+static f32 max(f32 a, f32 b) { return a < b ? b : a; } //TODO_inline
+static f32 clamp(f32 value, f32 mi, f32 ma) { return min(max(value, mi), ma); } //TODO_inline
+static f32 clamp01(f32 value) { clamp(value, 0.0f, 1.0f); }//TODO_inline
+static f32 lerp(f32 a, f32 b, f32 t) { return a + (clamp01(t) * (b - a)); }//TODO_inline
+static f32 lerp_unclamped(f32 a, f32 b, f32 t) { return a + (t * (b - a)); }//TODO_inline
+static f32 invlerp(f32 a, f32 b, f32 t) { return clamp01((t - a) / (b - a)); }//TODO_inline
+static f32 invlerp_unclamped(f32 a, f32 b, f32 t) { return (t - a) / (b - a); }//TODO_inline
+static f32 map(f32 value, f32 amin, f32 amax, f32 bmin, f32 bmax) { return lerp(bmin, bmax, invlerp(amin, amax, value)); }//TODO_inline
 
-static void swap_f32(f32& a, f32& b) { f32 aux = a; a = b; b = aux; } //TODO_inline
-
-static f32 min_f32(f32 a, f32 b) { return a < b ? a : b; } //TODO_inline
-static f32 max_f32(f32 a, f32 b) { return a < b ? b : a; } //TODO_inline
-static f32 clamp(f32 value, f32 min, f32 max) { return min_f32(max_f32(value, min), max); } //TODO_inline
-
-static s32 min_s32(s32 a, s32 b) { return a < b ? a : b; } //TODO_inline
-static s32 max_s32(s32 a, s32 b) { return a < b ? b : a; } //TODO_inline
-static s32 clamp(s32 value, s32 min, s32 max) { return min_s32(max_s32(value, min), max); } //TODO_inline
+static s32 min(s32 a, s32 b) { return a < b ? a : b; } //TODO_inline
+static s32 max(s32 a, s32 b) { return a < b ? b : a; } //TODO_inline
+static s32 clamp(s32 value, s32 mi, s32 ma) { return min(max(value, mi), ma); } //TODO_inline
+static s32 clamp01(s32 value) { clamp(value, 0.0, 1.0); }//TODO_inline
+static s32 lerp(s32 a, s32 b, s32 t) { return a + (clamp01(t) * (b - a)); }//TODO_inline
+static s32 lerp_unclamped(s32 a, s32 b, s32 t) { return a + (t * (b - a)); }//TODO_inline
+static s32 invlerp(s32 a, s32 b, s32 t) { return clamp01((t - a) / (b - a)); }//TODO_inline
+static s32 invlerp_unclamped(s32 a, s32 b, s32 t) { return (t - a) / (b - a); }//TODO_inline
+static s32 map(s32 value, s32 amin, s32 amax, s32 bmin, s32 bmax) { return lerp(bmin, bmax, invlerp(amin, amax, value)); }//TODO_inline
 
 class Vec2f 
 {
