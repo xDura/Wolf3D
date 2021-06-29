@@ -11,6 +11,10 @@
 #include <math.h>
 #include <string>
 #include <stdlib.h>
+#include "stdarg.h"
+#include <stdio.h>
+
+#include <cassert>
 
 #define IMGUI_IMPL_OPENGL_LOADER_GLAD
 #include "Imgui/imgui.h"

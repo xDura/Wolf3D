@@ -1,6 +1,6 @@
 #ifndef WF_APPLICATION_H
 #define WF_APPLICATION_H
-#include "window.h"
+#include "wf_window.h"
 
 namespace Wolf 
 {

@@ -1,7 +1,7 @@
 #include "wf_pch.h"
 #include <iostream>
 #include "sdl_window.h"
-#include "glad/glad.h"
+#include "wf_debug.h"
 
 bool show_demo_window = true;
 bool close = false;
@@ -9,12 +9,14 @@ bool close = false;
 int main(int argc, char* argv[])
 {
     std::cout << "HELLO WORLD" << std::endl;
-    Wolf::SDL_WINDOW* window = new Wolf::SDL_WINDOW();
-    window->sdl_window = Wolf::SDL_WINDOW::Create("Wolf3D", 800, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    Wolf::SDL_WINDOW* window = new Wolf::SDL_WINDOW("Wolf3D", 800, 600, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	SDL_GLContext glcontext = SDL_GL_CreateContext(window->sdl_window);
+	WF_ASSERT(false, "a");
+	WF_ASSERT_ALWAYS(false, "b");
+
 	if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
 	{
-		std::cout << "Failed initializing GLAD opengl context";
+		WF_LOGERROR("Failed initializing GLAD opengl context");
 		return -1;
 	}
 	int interval = SDL_GL_SetSwapInterval(0);
@@ -54,6 +56,7 @@ int main(int argc, char* argv[])
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		SDL_GL_SwapWindow(window->sdl_window);
 	}
+
 	SDL_GL_DeleteContext(glcontext);
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
