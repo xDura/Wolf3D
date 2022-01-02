@@ -1,10 +1,6 @@
 #include "wf_pch.h"
 #include "application.h"
 namespace Wolf {
-	void Application::Init()
-	{
-	}
-
 	void Application::StartUp()
 	{
 	}

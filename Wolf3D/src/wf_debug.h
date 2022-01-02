@@ -4,9 +4,9 @@
 #if _WIN32
 #include "windows.h"
 #endif
-#define WF_ASSERT_ALWAYS(exp, msg) Wolf::Logger::DebugLogError("%s,  file: %s,  line: %d", msg, __FILE__, __LINE__); while(true){};
+#define WF_ASSERT_ALWAYS(exp, msg) Wolf::Logger::DebugLogError("%s :  file: %s : line: %d", msg, __FILE__, __LINE__); while(true){};
 #ifdef _DEBUG
-#define WF_ASSERT(exp, msg) Wolf::Logger::DebugLogError("%s,  file: %s,  line: %d", msg, __FILE__, __LINE__); abort();
+#define WF_ASSERT(exp, msg) Wolf::Logger::DebugLogError("%s :  file: %s : line: %d", msg, __FILE__, __LINE__); abort();
 #define WF_LOGERROR(...) Wolf::Logger::DebugLogError(__VA_ARGS__)
 #define WF_LOGWARNING(...) Wolf::Logger::DebugLogWarning(__VA_ARGS__)
 #define WF_LOG(...) Wolf::Logger::DebugLog(__VA_ARGS__)
@@ -39,7 +39,7 @@ namespace Wolf
 		{
 	#if _WIN32
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-			SetConsoleTextAttribute(hConsole, 4);
+			SetConsoleTextAttribute(hConsole, 12);
 	#endif
 			va_list args;
 			va_start(args, format);
@@ -57,7 +57,7 @@ namespace Wolf
 		{
 	#if _WIN32
 			HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-			SetConsoleTextAttribute(hConsole, 6);
+			SetConsoleTextAttribute(hConsole, 14);
 	#endif
 			va_list args;
 			va_start(args, format);
